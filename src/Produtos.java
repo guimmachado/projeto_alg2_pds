@@ -50,8 +50,6 @@ public class Produtos {
         return categoriaProd;
     }
 
-<<<<<<< HEAD
-=======
     public void setCategoriaProd(String categoriaProd) {
         this.categoriaProd = categoriaProd;
     }
@@ -64,7 +62,6 @@ public class Produtos {
         return qtdAcessos;
     }
 
->>>>>>> e5018ab225ea276322aecc0a1090be2a853b020f
     // toString()
     @Override
     public String toString() {

@@ -1,14 +1,18 @@
 public class ListaChavadaProdutos {
+
+    // atributos
     private No primeiroNo;
     private No ultimoNo;
     private int tamanho;
 
+    // construtor
     public ListaChavadaProdutos() {
         this.primeiroNo = null;
         this.ultimoNo = null;
         this.tamanho = 0;
     }
 
+    // métodos
     public boolean isEmpty() {
         return this.primeiroNo == null;
     }
@@ -57,6 +61,7 @@ public class ListaChavadaProdutos {
         }
     }
 
+    // getters e setters
     public int getTamanho() {
         return this.tamanho;
     }

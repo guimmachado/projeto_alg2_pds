@@ -6,6 +6,7 @@ public class Produtos {
     private double precoProd;
     private int qtdProd;
     private String categoriaProd;
+    private int qtdVendida, qtdAcessos;
 
     // construtor
     public Produtos(int codProd, String nomeProd, double precoProd, int qtdProd, String categoriaProd) {
@@ -14,6 +15,18 @@ public class Produtos {
         this.precoProd = precoProd;
         this.qtdProd = qtdProd;
         this.categoriaProd = categoriaProd;
+        this.qtdVendida = 0;
+        this.qtdAcessos = 0;
+    }
+
+    // métodos
+    public void incrementarAcessos() {
+        this.qtdAcessos++;
+    }
+
+    public void incrementarVenda(int qtd){
+        this.qtdVendida += qtd;
+        this.qtdProd -= qtd;
     }
 
     // getters e setters
@@ -55,6 +68,14 @@ public class Produtos {
 
     public void setCategoriaProd(String categoriaProd) {
         this.categoriaProd = categoriaProd;
+    }
+
+    public int getQtdVendida() {
+        return qtdVendida;
+    }
+
+    public int getQtdAcessos() {
+        return qtdAcessos;
     }
 
     // toString()

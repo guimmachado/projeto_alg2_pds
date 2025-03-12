@@ -21,40 +21,20 @@ public class Produtos {
         return codProd;
     }
 
-    public void setCodProd(int codProd) {
-        this.codProd = codProd;
-    }
-
     public String getNomeProd() {
         return nomeProd;
-    }
-
-    public void setNomeProd(String nomeProd) {
-        this.nomeProd = nomeProd;
     }
 
     public double getPrecoProd() {
         return precoProd;
     }
 
-    public void setPrecoProd(double precoProd) {
-        this.precoProd = precoProd;
-    }
-
     public int getQtdProd() {
         return qtdProd;
     }
 
-    public void setQtdProd(int qtdProd) {
-        this.qtdProd = qtdProd;
-    }
-
     public String getCategoriaProd() {
         return categoriaProd;
-    }
-
-    public void setCategoriaProd(String categoriaProd) {
-        this.categoriaProd = categoriaProd;
     }
 
     // toString()

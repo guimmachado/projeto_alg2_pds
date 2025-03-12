@@ -1,5 +1,7 @@
 public class Cliente {
 
+//teste
+
     // atributos
     private int codCliente;
     private String nomeCliente;

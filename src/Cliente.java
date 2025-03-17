@@ -2,14 +2,15 @@ public class Cliente {
 
     // atributos
     private int codCliente;
+    private static int contador = 1;
     private String nomeCliente;
     private String enderecoCliente;
     private String dataNascimento;
     private int nmrPedidos;
 
     // construtor
-    public Cliente(int codCliente, String nomeCliente, String enderecoCliente, String dataNascimento) {
-        this.codCliente = codCliente;
+    public Cliente(String nomeCliente, String enderecoCliente, String dataNascimento) {
+        this.codCliente = contador++;
         this.nomeCliente = nomeCliente;
         this.enderecoCliente = enderecoCliente;
         this.dataNascimento = dataNascimento;
@@ -18,10 +19,6 @@ public class Cliente {
     // getters e setters
     public int getCodCliente() {
         return codCliente;
-    }
-
-    public void setCodCliente(int codCliente) {
-        this.codCliente = codCliente;
     }
 
     public String getNomeCliente() {

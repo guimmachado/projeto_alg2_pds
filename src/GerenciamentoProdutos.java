@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+// Lista de Produtos
 public class GerenciamentoProdutos {
     private ArrayList<Produtos> produtos;
 

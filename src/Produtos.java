@@ -2,6 +2,7 @@ public class Produtos {
 
     // atributos
     private int codProd;
+    private static int contador = 1;
     private String nomeProd;
     private double precoProd;
     private int qtdProd;
@@ -9,8 +10,8 @@ public class Produtos {
     private int qtdVendida, qtdAcessos;
 
     // construtor
-    public Produtos(int codProd, String nomeProd, double precoProd, int qtdProd, String categoriaProd) {
-        this.codProd = codProd;
+    public Produtos(String nomeProd, double precoProd, int qtdProd, String categoriaProd) {
+        this.codProd = contador++;
         this.nomeProd = nomeProd;
         this.precoProd = precoProd;
         this.qtdProd = qtdProd;
@@ -27,6 +28,7 @@ public class Produtos {
     public void incrementarVenda(int qtd){
         this.qtdVendida += qtd;
         this.qtdProd -= qtd;
+        this.qtdAcessos++;
     }
 
     // getters e setters

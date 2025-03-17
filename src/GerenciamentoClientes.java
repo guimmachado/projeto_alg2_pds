@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+// Lista de Clientes
 public class GerenciamentoClientes {
     private ArrayList<Cliente> clientes;
 

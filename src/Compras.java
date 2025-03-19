@@ -1,23 +1,29 @@
-import java.util.List;
+import java.util.HashMap;
 import java.time.LocalDateTime;
 
 public class Compras {
     private int codCompra;
+    private static int contador = 1;
     private Cliente cliente;
-    private List<Produtos> produtos;
+    private HashMap<Produtos, Integer> produtosMap;
     private double totalPedido;
     private LocalDateTime dataCompra;
 
-    public Compras(int codCompra, Cliente cliente, List<Produtos> produtos) {
-        this.codCompra = codCompra;
+    // Para realizar a compra, é necessário o Cliente e um HashMap
+    // Pois é necessário mapear quais produtos foram comprados e suas quantidades
+    // para realziar a venda
+    public Compras(Cliente cliente, HashMap<Produtos, Integer> produtosMap) {
+        this.codCompra = contador++;
         this.cliente = cliente;
-        this.produtos = produtos;
-        this.totalPedido = produtos.stream().mapToDouble(Produtos::getPrecoProd).sum();
+        this.produtosMap = produtosMap;
+        this.totalPedido = produtosMap.entrySet().stream().mapToDouble(entry -> entry.getKey().getPrecoProd() * entry.getValue()).sum();
         this.dataCompra = LocalDateTime.now();
-    }
+        
+        for(Produtos p : produtosMap.keySet()) {
+            int quantidade = produtosMap.get(p);
+            p.incrementarVenda(quantidade);
+        }
 
-    private double calcularTotal(){
-        return produtos.stream().mapToDouble(Produtos::getPrecoProd).sum();
     }
 
     public int getCodCompra() {
@@ -28,10 +34,6 @@ public class Compras {
         return cliente;
     }
 
-    public List<Produtos> getProdutos() {
-        return produtos;
-    }
-
     public double getTotalPedido() {
         return totalPedido;
     }
@@ -40,12 +42,18 @@ public class Compras {
         return dataCompra;
     }
 
+    
+
+    public HashMap<Produtos, Integer> getProdutosMap() {
+        return produtosMap;
+    }
+
     @Override
     public String toString() {
         return "Compras{" +
                 "codCompra=" + codCompra +
                 ", cliente=" + cliente.getNomeCliente() +
-                ", produtos=" + produtos.stream().map(Produtos::getNomeProd).toList().toString() +
+                ", produtos=" + produtosMap.keySet().stream().map(Produtos::getNomeProd).toList().toString() +
                 ", totalPedido=" + totalPedido +
                 ", dataCompra=" + dataCompra +
                 '}';

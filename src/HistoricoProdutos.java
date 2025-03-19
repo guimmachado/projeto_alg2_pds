@@ -1,12 +1,15 @@
-public class ListaChavadaProdutos {
+import java.io.FileWriter;
+import java.io.IOException;
 
+public class HistoricoProdutos { //ex-listaChavadaProdutos
+    
     // atributos
     private No primeiroNo;
     private No ultimoNo;
     private int tamanho;
 
     // construtor
-    public ListaChavadaProdutos() {
+    public HistoricoProdutos() {
         this.primeiroNo = null;
         this.ultimoNo = null;
         this.tamanho = 0;
@@ -22,42 +25,55 @@ public class ListaChavadaProdutos {
         if (isEmpty()) {
             this.primeiroNo = novoNo;
             this.ultimoNo = novoNo;
+            System.out.println("Produto inserido" + produto.getNomeProd() +" com sucesso!");
         } else {
             this.ultimoNo.setProxNo(novoNo);
             novoNo.setAntNo(this.ultimoNo);
             this.ultimoNo = novoNo;
+            System.out.println("Produto inserido" + produto.getNomeProd() +" com sucesso!");
         }
         this.tamanho++;
     }
 
-    public void remover(Produtos produto) {
+    public void removerHistorico(Produtos produto) {
         No noAtual = this.primeiroNo;
         while (noAtual != null) {
-            if (noAtual.getProdutos().equals(produto)) {
+            if (noAtual.getProdutos().getCodProd() == produto.getCodProd()) {
                 if (noAtual == this.primeiroNo) {
                     this.primeiroNo = noAtual.getProxNo();
-                    if (this.primeiroNo != null) {
-                        this.primeiroNo.setAntNo(null);
-                    }
+                    this.primeiroNo.setAntNo(null);
+                    System.out.println("Produto removido" + produto.getNomeProd() +" com sucesso!");
                 } else if (noAtual == this.ultimoNo) {
                     this.ultimoNo = noAtual.getAntNo();
                     this.ultimoNo.setProxNo(null);
+                    System.out.println("Produto removido" + produto.getNomeProd() +" com sucesso!");
                 } else {
                     noAtual.getAntNo().setProxNo(noAtual.getProxNo());
                     noAtual.getProxNo().setAntNo(noAtual.getAntNo());
+                    System.out.println("Produto removido" + produto.getNomeProd() +" com sucesso!");
                 }
                 this.tamanho--;
-                return;
+                break;
             }
             noAtual = noAtual.getProxNo();
         }
     }
 
-    public void imprimir() {
+    public void imprimirHistorico() {
         No noAtual = this.primeiroNo;
         while (noAtual != null) {
             System.out.println(noAtual.getProdutos());
             noAtual = noAtual.getProxNo();
+        }
+    }
+
+    public void exportarHistorico() throws IOException {
+        try (FileWriter arquivo = new FileWriter("listaProdutos.txt")) {
+            No noAtual = this.primeiroNo;
+            while (noAtual != null) {
+                arquivo.write(noAtual.getProdutos().toString() + "\n");
+                noAtual = noAtual.getProxNo();
+            }
         }
     }
 

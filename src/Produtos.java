@@ -75,4 +75,12 @@ public class Produtos {
                 ", categoriaProd='" + categoriaProd + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Produtos produto = (Produtos) obj;
+        return nomeProd.equals(produto.nomeProd);
+    }
 }

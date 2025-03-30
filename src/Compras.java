@@ -13,6 +13,10 @@ public class Compras {
     // Pois é necessário mapear quais produtos foram comprados e suas quantidades
     // para realziar a venda
     public Compras(Cliente cliente, HashMap<Produtos, Integer> produtosMap) {
+        if (cliente == null || produtosMap == null || produtosMap.isEmpty()) {
+            throw new IllegalArgumentException("Cliente e produtos não podem ser nulos ou vazios.");
+        }
+        
         this.codCompra = contador++;
         this.cliente = cliente;
         this.produtosMap = produtosMap;
@@ -41,8 +45,6 @@ public class Compras {
     public LocalDateTime getDataCompra() {
         return dataCompra;
     }
-
-    
 
     public HashMap<Produtos, Integer> getProdutosMap() {
         return produtosMap;

@@ -1,3 +1,5 @@
+package projeto.pds2.alg2;
+
 import java.util.ArrayList;
 
 public class BuscaBinaria {

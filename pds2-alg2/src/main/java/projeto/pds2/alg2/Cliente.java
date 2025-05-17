@@ -1,3 +1,5 @@
+package projeto.pds2.alg2;
+
 public class Cliente {
 
     // atributos
@@ -14,6 +16,10 @@ public class Cliente {
         this.nomeCliente = nomeCliente;
         this.enderecoCliente = enderecoCliente;
         this.dataNascimento = dataNascimento;
+    }
+
+    public void incrementarNmrPedidos() {
+        this.nmrPedidos++;
     }
 
     // getters e setters

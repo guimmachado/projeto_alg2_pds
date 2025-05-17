@@ -1,3 +1,5 @@
+package projeto.pds2.alg2;
+
 import java.util.HashMap;
 import java.time.LocalDateTime;
 
@@ -27,6 +29,8 @@ public class Compras {
             int quantidade = produtosMap.get(p);
             p.incrementarVenda(quantidade);
         }
+
+        this.cliente.incrementarNmrPedidos();
 
     }
 

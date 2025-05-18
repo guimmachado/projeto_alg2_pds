@@ -19,7 +19,7 @@ public class ListaChavadaProdutos {
         return this.primeiroNo == null;
     }
 
-    public void inserir(Produtos produto) {
+    public void inserir(Produto produto) {
         No novoNo = new No(produto);
         if (isEmpty()) {
             this.primeiroNo = novoNo;
@@ -32,7 +32,7 @@ public class ListaChavadaProdutos {
         this.tamanho++;
     }
 
-    public void remover(Produtos produto) {
+    public void remover(Produto produto) {
         No noAtual = this.primeiroNo;
         while (noAtual != null) {
             if (noAtual.getProdutos().equals(produto)) {

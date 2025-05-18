@@ -1,6 +1,6 @@
 package projeto.pds2.alg2;
 
-public class Produtos {
+public class Produto {
 
     // atributos
     private int codProd;
@@ -12,7 +12,7 @@ public class Produtos {
     private int qtdVendida, qtdAcessos;
 
     // construtor
-    public Produtos(String nomeProd, double precoProd, int qtdProd, String categoriaProd) {
+    public Produto(String nomeProd, double precoProd, int qtdProd, String categoriaProd) {
         this.codProd = contador++;
         this.nomeProd = nomeProd;
         this.precoProd = precoProd;
@@ -78,11 +78,23 @@ public class Produtos {
                 '}';
     }
 
+    // Método equals para comparações
+    // Dois produtos são iguais se seus nomes são iguais e se seus códigos de produto (ID) são iguais
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
-        Produtos produto = (Produtos) obj;
-        return nomeProd.equals(produto.nomeProd);
+        Produto produto = (Produto) obj;
+        return this.codProd == produto.codProd
+           && (this.nomeProd != null ? this.nomeProd.equals(produto.nomeProd) : produto.nomeProd == null);
+    }
+
+    // HashCode
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 31 * hash + codProd;
+        hash = 31 * hash + (nomeProd != null ? nomeProd.hashCode() : 0); // inclui nomeProd
+        return hash;
     }
 }

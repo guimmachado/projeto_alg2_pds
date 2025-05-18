@@ -4,24 +4,24 @@ import java.util.ArrayList;
 
 // Lista de Produtos
 public class GerenciamentoProdutos {
-    private ArrayList<Produtos> produtos;
+    private ArrayList<Produto> produtos;
 
     public GerenciamentoProdutos(){
         this.produtos = new ArrayList<>();
     }
 
-    public String adicionarProdutos(Produtos produto){
+    public String adicionarProdutos(Produto produto){
         this.produtos.add(produto);
         return "Produto Adicionado!";
     }
 
-    public String removerProdutos(Produtos produto){
+    public String removerProdutos(Produto produto){
         this.produtos.remove(produto);
         return "Produto removido!";
     }
 
     public String listarProdutos(){
-        for(Produtos produto : produtos){
+        for(Produto produto : produtos){
             return produto.toString();
         }
         return "";

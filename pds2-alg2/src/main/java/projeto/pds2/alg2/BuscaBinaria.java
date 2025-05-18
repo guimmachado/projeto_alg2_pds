@@ -3,7 +3,7 @@ package projeto.pds2.alg2;
 import java.util.ArrayList;
 
 public class BuscaBinaria {
-    public static int buscaLinear(ArrayList<Produtos> lista, Produtos elemento) {
+    public static int buscaLinear(ArrayList<Produto> lista, Produto elemento) {
         int esquerda = 0;
         int direita = lista.size() - 1;
         int codProd = elemento.getCodProd(); // ID do produto

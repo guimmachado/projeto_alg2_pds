@@ -1,24 +1,18 @@
 package projeto.pds2.alg2;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 public class Main {
     public static void main(String[] args) {
         // Cliente
         Cliente c1 = new Cliente("Guilherme", "Rua Jaci, 51", "06-08-2003");
         
         // Produto
-        Produtos p1 = new Produtos("Batedeira", 399.90, 23, "Eletrodomesticos");
+        Produto p1 = new Produto("Batedeira", 399.90, 23, "Eletrodomesticos");
         
-        // Mapa<Produtos, Integer> vazio
-        // Onde Produtos é o produto em si
-        // Integer é a quantidade
-        HashMap<Produtos, Integer> produtosEQuantidade = new HashMap<>();
+        // Instanciando Tabelha Hash
+        TabelaHash th = new TabelaHash(50);
 
         // Colocando par chave-valor no Mapa
-        produtosEQuantidade.put(p1, 3);
+        th.adicionar(p1, 3);
         
         // Status antes da compra
         System.out.println("Antes da compra: ");
@@ -27,7 +21,7 @@ public class Main {
         System.out.println("Quantidade de vendas: " + p1.getQtdVendida());
 
         // Realizando a compra
-        Compras compra1 = new Compras(c1, produtosEQuantidade);
+        Carrinho compra1 = new Carrinho(c1, th);
 
         System.out.println("Após a compra: ");
         System.out.println("Quantidade de acessos: " + p1.getQtdAcessos());

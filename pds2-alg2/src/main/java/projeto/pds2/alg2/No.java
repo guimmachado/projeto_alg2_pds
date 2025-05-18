@@ -3,23 +3,23 @@ package projeto.pds2.alg2;
 public class No {
 
     // atributos
-    private Produtos produto;
+    private Produto produto;
     private No proxNo;
     private No antNo;
 
     // construtor
-    public No(Produtos produto) {
+    public No(Produto produto) {
         this.produto= produto;
         this.proxNo = null;
         this.antNo = null;
     }
 
     // getters e setters
-    public void setProdutos(Produtos produto) {
+    public void setProdutos(Produto produto) {
         this.produto = produto;
     }
 
-    public Produtos getProdutos() {
+    public Produto getProdutos() {
         return this.produto;
     }
 

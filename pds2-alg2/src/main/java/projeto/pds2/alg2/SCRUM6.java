@@ -13,10 +13,10 @@ public class SCRUM6 {
         // - PREPARAÇÃO
 
        // Lista de produtos 
-        ArrayList<Produtos> produtos = new ArrayList<>(Arrays.asList(
-            new Produtos("Belly", 1200, 1, "Animal"),
-            new Produtos("Celular", 3500, 200, "Eletrônico"),
-            new Produtos("Pulseira", 200, 1000, "Bijuteria")
+        ArrayList<Produto> produtos = new ArrayList<>(Arrays.asList(
+            new Produto("Belly", 1200, 1, "Animal"),
+            new Produto("Celular", 3500, 200, "Eletrônico"),
+            new Produto("Pulseira", 200, 1000, "Bijuteria")
         ));
 
         // Lista de clientes
@@ -28,30 +28,30 @@ public class SCRUM6 {
 
         // Lista pré ordenação
         System.out.println("Lista pré ordenação: ");
-        for(Produtos p : produtos) {
+        for(Produto p : produtos) {
             System.out.println(p);
         }
 
         // Criando HashMap com produtos e suas quantidades
         // Cliente 1
-        HashMap<Produtos, Integer> produtosComprados1 = new HashMap<>();
-        produtosComprados1.put(produtos.get(0), 1);
-        produtosComprados1.put(produtos.get(1), 2);
+        TabelaHash produtosComprados1 = new TabelaHash(5);
+        produtosComprados1.adicionar(produtos.get(0), 1);
+        produtosComprados1.adicionar(produtos.get(1), 2);
 
         // Cliente 2
-        HashMap<Produtos, Integer> produtosComprados2 = new HashMap<>();
-        produtosComprados2.put(produtos.get(1), 1);
-        produtosComprados2.put(produtos.get(2), 1);
+        TabelaHash produtosComprados2 = new TabelaHash(5);
+        produtosComprados2.adicionar(produtos.get(1), 1);
+        produtosComprados2.adicionar(produtos.get(2), 1);
 
         // Cliente 3
-        HashMap<Produtos, Integer> produtosComprados3 = new HashMap<>();
-        produtosComprados3.put(produtos.get(2), 3);
+        TabelaHash produtosComprados3 = new TabelaHash(5);
+        produtosComprados3.adicionar(produtos.get(2), 3);
     
 
         // Realizando as compras
-        Compras c1 = new Compras(clientes.get(0), produtosComprados1);
-        Compras c2 = new Compras(clientes.get(1), produtosComprados2);
-        Compras c3 = new Compras(clientes.get(2), produtosComprados3);
+        Carrinho c1 = new Carrinho(clientes.get(0), produtosComprados1);
+        Carrinho c2 = new Carrinho(clientes.get(1), produtosComprados2);
+        Carrinho c3 = new Carrinho(clientes.get(2), produtosComprados3);
 
         // - AÇÃO
 
@@ -60,7 +60,7 @@ public class SCRUM6 {
         // - RESULTADO
 
         System.out.println("Lista após ordenação: ");
-        for(Produtos p : produtos) {
+        for(Produto p : produtos) {
             System.out.println(p);
         }
 
@@ -87,7 +87,7 @@ public class SCRUM6 {
 
         // Lista pré ordenação
         System.out.println("Lista pré ordenação: ");
-        for(Produtos p : produtos) {
+        for(Produto p : produtos) {
             System.out.println(p);
         }
 
@@ -98,7 +98,7 @@ public class SCRUM6 {
         // - RESULTADO
 
         System.out.println("Lista após ordenação: ");
-        for(Produtos p : produtos) {
+        for(Produto p : produtos) {
             System.out.println(p);
         }
 
@@ -124,7 +124,7 @@ public class SCRUM6 {
         // - RESULTADO
 
         System.out.println("Lista após ordenação DECRESCENTE: ");
-        for(Produtos p : produtos) {
+        for(Produto p : produtos) {
             System.out.println(p);
         }
 
@@ -151,7 +151,7 @@ public class SCRUM6 {
 
         // Lista pré ordenação
         System.out.println("Lista pré ordenação: ");
-        for(Produtos p : produtos) {
+        for(Produto p : produtos) {
             System.out.println(p);
         }
 
@@ -170,7 +170,7 @@ public class SCRUM6 {
         TimSort.timSort(produtos, (p1, p2) -> p1.getNomeProd().compareTo(p2.getNomeProd())); // Para o Comparator, utilizar métodos lambda
 
         System.out.println("Lista após ordenação por NOME (CRESCENTE): ");
-        for(Produtos p : produtos) {
+        for(Produto p : produtos) {
             System.out.println(p);
             System.out.println("Quantidade em estoque: " + p.getQtdProd());
         }
@@ -179,7 +179,7 @@ public class SCRUM6 {
         TimSort.timSort(produtos, (p1, p2) -> Double.compare(p2.getPrecoProd(), p1.getPrecoProd())); // Para o Comparator, utilizar métodos lambda
 
         System.out.println("Lista após ordenação por PREÇO (DECRESCENTE): ");
-        for(Produtos p : produtos) {
+        for(Produto p : produtos) {
             System.out.println(p);
             System.out.println("Quantidade em estoque: " + p.getQtdProd());
         }
@@ -188,7 +188,7 @@ public class SCRUM6 {
         TimSort.timSort(produtos, (p1, p2) -> Integer.compare(p2.getQtdProd(), p1.getQtdProd())); // Para o Comparator, utilizar métodos lambda
 
         System.out.println("Lista após ordenação por QUANTIDADE EM ESTOQUE (DECRESCENTE): ");
-        for(Produtos p : produtos) {
+        for(Produto p : produtos) {
             System.out.println(p);
             System.out.println("Quantidade em estoque: " + p.getQtdProd());
         }

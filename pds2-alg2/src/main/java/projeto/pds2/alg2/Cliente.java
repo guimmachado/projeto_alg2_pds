@@ -1,8 +1,7 @@
 package projeto.pds2.alg2;
 
 public class Cliente {
-
-    // atributos
+    // Atributos
     private int codCliente;
     private static int contador = 1;
     private String nomeCliente;
@@ -10,7 +9,9 @@ public class Cliente {
     private String dataNascimento;
     private int nmrPedidos;
 
-    // construtor
+    // Métodos
+
+    // Método construtor
     public Cliente(String nomeCliente, String enderecoCliente, String dataNascimento) {
         this.codCliente = contador++;
         this.nomeCliente = nomeCliente;
@@ -18,11 +19,12 @@ public class Cliente {
         this.dataNascimento = dataNascimento;
     }
 
+    // Método que incrementa o número de pedidos em 1
     public void incrementarNmrPedidos() {
         this.nmrPedidos++;
     }
 
-    // getters e setters
+    // Getters e Setters
     public int getCodCliente() {
         return codCliente;
     }

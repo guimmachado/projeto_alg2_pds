@@ -262,7 +262,7 @@ public class Main {
         // ordenação dos produtos
         TimSort.timSort(produtosOrdenados, ComparadorProdutos.porQtdVendida());
         System.out.println("Produtos Ordenados por vendas");
-        for (Produto produto : listaProdutos) {
+        for (Produto produto : produtosOrdenados) {
             System.out.println(produto.getNomeProd() + " - Vendidos: " + produto.getQtdVendida());
         }
     }

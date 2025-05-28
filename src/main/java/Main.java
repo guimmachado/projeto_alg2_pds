@@ -420,9 +420,6 @@ public class Main {
             listaClientes = (ArrayList<Cliente>) oisClientes.readObject();
             System.out.println("Clientes carregados de " + ARQUIVO_CLIENTES + ":");
             if (listaClientes != null && !listaClientes.isEmpty()) {
-                for (Cliente cliente : listaClientes) {
-                    System.out.println(cliente);
-                }
                 Cliente.ajustarContadorAposCarregamento(listaClientes); //
                 System.out.println("Próximo ID de cliente disponível: " + Cliente.getProximoIdDisponivel()); //
             } else {
@@ -441,9 +438,6 @@ public class Main {
             listaProdutos = (ArrayList<Produto>) oisProdutos.readObject();
             System.out.println("\nProdutos carregados de " + ARQUIVO_PRODUTOS + ":");
             if (listaProdutos != null && !listaProdutos.isEmpty()) {
-                for (Produto produto : listaProdutos) {
-                    System.out.println(produto);
-                }
                 Produto.ajustarContadorAposCarregamento(listaProdutos);
                 System.out.println("Próximo ID de produto disponível: " + Produto.getProximoIdDisponivel());
             } else {
@@ -455,9 +449,7 @@ public class Main {
 
             listaProdutos = new ArrayList<>();
         }
-             // Carregar Histórico de Compras
-        // (Você precisará adaptar a classe HistoricoCompras para ser serializável
-        //  e para que ela gerencie a sua própria lista de 'Carrinho's)
+
         try (ObjectInputStream oisHistorico = new ObjectInputStream(new FileInputStream(ARQUIVO_HISTORICO))) {
             historicoCompras = (HistoricoCompras) oisHistorico.readObject();
             // Se HistoricoCompras gerencia um contador estático para codCompra, ajuste-o aqui.

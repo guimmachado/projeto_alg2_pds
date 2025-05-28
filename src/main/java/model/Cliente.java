@@ -18,7 +18,7 @@ public class Cliente implements Serializable {
 
     // Método construtor
     public Cliente(String nomeCliente, String enderecoCliente, String dataNascimento) {
-        this.codCliente = contador++;
+        this.codCliente = contadorIdGlobal++;
         this.nomeCliente = nomeCliente;
         this.enderecoCliente = enderecoCliente;
         this.dataNascimento = dataNascimento;

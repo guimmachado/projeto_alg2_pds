@@ -2,14 +2,14 @@ package model;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
 public class Produto implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    // Atributos
     private int codProd;
-    private static int contador = 1; // Contador para gerar novos IDs
+    private static int contador = 1;
     private String nomeProd;
     private double precoProd;
     private int qtdProd;
@@ -29,9 +29,6 @@ public class Produto implements Serializable {
     }
 
     // Construtor para recriar produtos a partir de dados existentes (ex: de um arquivo)
-    // Este construtor ajuda a controlar o ID e outros campos ao carregar.
-    // Para serialização Java, os campos são preenchidos diretamente,
-    // mas este construtor pode ser útil para outras formas de persistência ou testes.
     public Produto(int codProd, String nomeProd, double precoProd, int qtdProd, String categoriaProd, int qtdVendida, int qtdAcessos) {
         this.codProd = codProd;
         this.nomeProd = nomeProd;
@@ -46,7 +43,7 @@ public class Produto implements Serializable {
         }
     }
 
-    // métodos
+    // metodos
     public void incrementarAcessos() {
         this.qtdAcessos++;
     }
@@ -102,15 +99,13 @@ public class Produto implements Serializable {
                 '}';
     }
 
-    // Método equals para comparações
-    // Dois produtos são iguais se seus nomes são iguais e se seus códigos de produto (ID) são iguais
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
         Produto produto = (Produto) obj;
         return this.codProd == produto.codProd
-                && (this.nomeProd != null ? this.nomeProd.equals(produto.nomeProd) : produto.nomeProd == null);
+                && (Objects.equals(this.nomeProd, produto.nomeProd));
     }
 
     // HashCode
@@ -122,7 +117,7 @@ public class Produto implements Serializable {
         return hash;
     }
 
-    // Método para ajustar o contador estático após carregar uma lista de produtos
+    // Metodo para ajustar o contador estático após carregar uma lista de produtos
     public static void ajustarContadorAposCarregamento(List<Produto> produtos) {
         if (produtos == null || produtos.isEmpty()) {
             return;
@@ -136,7 +131,7 @@ public class Produto implements Serializable {
         contador = maxId + 1;
     }
 
-    // Método para obter o próximo ID a ser usado
+    // Metodo para obter o próximo ID a ser usado
     public static int getProximoIdDisponivel() {
         return contador;
     }

@@ -53,7 +53,6 @@ public class Main {
 
             listaProdutos = new ArrayList<>();
         }
-
         
         if (listaProdutos != null && !listaProdutos.isEmpty()) {
             System.out.println("\nExistem " + listaProdutos.size() + " produtos disponíveis.");

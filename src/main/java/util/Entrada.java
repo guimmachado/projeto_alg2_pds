@@ -2,7 +2,10 @@ package util;
 
 import model.Produto;
 
-public class Entrada {
+import java.io.Serializable;
+
+public class Entrada implements Serializable {
+    private static final long serialVersionUID = 5L;
     private Produto chave;
     private int quantidade;
 

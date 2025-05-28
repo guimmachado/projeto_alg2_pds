@@ -2,9 +2,11 @@ package util;
 
 import model.Produto;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class TabelaHash {
+public class TabelaHash implements Serializable {
+    private static final long serialVersionUID = 4L;
     // Atributos
     private final int capacidade;
     private ArrayList<Entrada>[] tabela;

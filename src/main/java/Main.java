@@ -1,5 +1,8 @@
 import model.Cliente;
 import model.Produto;
+import service.ComparadorProdutos;
+import util.TimSort;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -8,6 +11,8 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
+
+        // instanciacao dos clientes e dos produtos
         String arquivoClientes = "clientes.ser";
         List<Cliente> listaClientes = null;
 
@@ -31,7 +36,7 @@ public class Main {
         }
 
         String arquivoProdutos = "produtos.ser";
-        List<Produto> listaProdutos = null;
+        ArrayList<Produto> listaProdutos = null;
 
         try (FileInputStream fisProdutos = new FileInputStream(arquivoProdutos);
              ObjectInputStream oisProdutos = new ObjectInputStream(fisProdutos)) {
@@ -53,12 +58,19 @@ public class Main {
 
             listaProdutos = new ArrayList<>();
         }
-        
+
         if (listaProdutos != null && !listaProdutos.isEmpty()) {
             System.out.println("\nExistem " + listaProdutos.size() + " produtos disponíveis.");
         }
         if (listaClientes != null && !listaClientes.isEmpty()) {
             System.out.println("Existem " + listaClientes.size() + " clientes cadastrados.");
+        }
+
+        // ordenação dos produtos
+        TimSort.timSort(listaProdutos, ComparadorProdutos.porQtdVendida());
+        System.out.println("Produtos Ordenados por vendas");
+        for(Produto produto : listaProdutos){
+            System.out.println(produto.getNomeProd() + " - Vendidos: " + produto.getQtdVendida());
         }
     }
 }

@@ -13,9 +13,9 @@ public class Carrinho {
     private TabelaHash produtosMap;
     private double totalPedido;
 
-    // Métodos
+    // Metodos
 
-    // Método construtor
+    // Metodo construtor
     // Para realizar a compra, é necessário o Cliente e um HashMap
     // Pois é necessário mapear quais produtos foram comprados e suas quantidades
     // para determinado cliente para realizar a venda

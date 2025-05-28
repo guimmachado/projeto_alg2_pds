@@ -11,11 +11,11 @@ public class HistoricoCompras {
     // Atributos
     private ArrayList<Carrinho> compras;
 
-    // Métodos
+    // Metodos
 
-    // Método construtor padrão do Java
+    // Metodo construtor padrão do Java
 
-    // Método que efetiva a compra de um determinado carrinho
+    // Metodo que efetiva a compra de um determinado carrinho
     // O carrinho pode ser selecionado
     // Pois é um Array de carrinhos
     public boolean comprarCarrinho(int indice) {

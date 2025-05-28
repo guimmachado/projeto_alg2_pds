@@ -1,6 +1,7 @@
 import model.Carrinho;
 import model.Cliente;
 import model.Produto;
+import org.jetbrains.annotations.Nullable;
 import service.ComparadorProdutos;
 import service.HistoricoCompras;
 import util.TabelaHash;
@@ -22,17 +23,15 @@ public class Main {
     private static ArrayList<Produto> listaProdutos = new ArrayList<>();
     private static HistoricoCompras historicoCompras = new HistoricoCompras();
 
-
+    // contém o funcionamento do sistema
     public static void main(String[] args) {
         carregarDados();
-
         int opcao = 0;
         do {
             menuPrincipal();
             try {
                 opcao = sc.nextInt();
                 sc.nextLine();
-
                 switch (opcao) {
                     case 1:
                         menuClientes();
@@ -68,6 +67,7 @@ public class Main {
         } while (opcao != 0);
     }
 
+    // contém o funcionamento do menu principal
     public static void menuPrincipal() {
         System.out.println("===== Menu Principal =====");
         System.out.println("1. Gerenciar Clientes");
@@ -80,6 +80,7 @@ public class Main {
         System.out.print("Escolha uma opção: ");
     }
 
+    // contém o funcionamento do menu Gerenciar Clientes
     private static void menuClientes() {
         int opcao;
         do {
@@ -116,6 +117,7 @@ public class Main {
         } while (opcao != 0);
     }
 
+    // função cadastrar novo cliente no sistema
     private static void cadastrarNovoCliente() {
         System.out.println("\n--- Cadastrar Novo Cliente ---");
         System.out.print("Nome: ");
@@ -131,6 +133,7 @@ public class Main {
         System.out.println("Cliente " + novoCliente.getNomeCliente() + " (Cód: " + novoCliente.getCodCliente() + ") cadastrado com sucesso!");
     }
 
+    // função de listar todos os clientes
     private static void listarTodosClientes() {
         System.out.println("\n--- Lista de Clientes ---");
         if (listaClientes.isEmpty()) {
@@ -142,6 +145,7 @@ public class Main {
         }
     }
 
+    // função de buscar o cliente por código
     private static Cliente buscarClientePorCodigo() {
         System.out.print("Digite o código do cliente: ");
         int cod = sc.nextInt();
@@ -156,6 +160,7 @@ public class Main {
         return null;
     }
 
+    // função do menu produtos
     private static void menuProdutos() {
         int opcao;
         do {
@@ -196,6 +201,7 @@ public class Main {
         } while (opcao != 0);
     }
 
+    // função cadastrar novo produto no sistema
     private static void cadastrarNovoProduto() {
         System.out.println("\n--- Cadastrar Novo Produto ---");
         System.out.println("Nome do produto: ");
@@ -234,6 +240,7 @@ public class Main {
         System.out.println("Produto " + novoProduto.getNomeProd() + " (Cód: " + novoProduto.getCodProd() + ") cadastrado com sucesso!");
     }
 
+    // função de listar todos os produtos
     private static void listarTodosProdutos(ArrayList<Produto> listaProdutos) {
         System.out.println("\n--- Lista de Produtos ---");
         if (listaProdutos.isEmpty()) {
@@ -245,6 +252,7 @@ public class Main {
         }
     }
 
+    // função de listar os produtos ordenados pelos mais vendidos
     private static void listarProdutosPorMaisVendidos() {
         if (listaProdutos.isEmpty()) {
             System.out.println("Nenhum produto para ordenar.");
@@ -259,6 +267,7 @@ public class Main {
         }
     }
 
+    // função de buscar o produto pelo código
     private static Produto buscarProdutoPorCodigo() {
         System.out.print("Digite o código do produto: ");
         int cod = sc.nextInt();
@@ -275,6 +284,7 @@ public class Main {
         return null;
     }
 
+    // função de realizar compra
     private static void realizarCompra() {
         System.out.println("\n--- Realizar Compra ---");
         if (listaClientes.isEmpty()) {
@@ -380,11 +390,12 @@ public class Main {
         }
     }
 
+    // função de mostrar o histórico de compras completo
     private static void visualizarHistoricoCompras() {
-        System.out.println("\n--- Histórico de Compras ---");
         historicoCompras.listarTodasAsCompras();
     }
 
+    // TODO: fazer os algoritmos de recomendação
     private static void menuRecomendacoes() {
         System.out.println("\n--- Recomendações de Produtos ---");
         System.out.println("Funcionalidade de recomendação ainda não implementada.");

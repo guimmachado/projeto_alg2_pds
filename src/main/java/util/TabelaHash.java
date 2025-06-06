@@ -53,7 +53,7 @@ public class TabelaHash implements Serializable {
             }
         }
 
-        return -1;
+        return 0;
     }
 
     public boolean remover(Produto chave) {

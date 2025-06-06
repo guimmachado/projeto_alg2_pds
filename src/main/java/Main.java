@@ -6,6 +6,7 @@ import service.ComparadorProdutos;
 import service.HistoricoCompras;
 import util.TabelaHash;
 import util.TimSort;
+import service.AVL;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -130,7 +131,8 @@ public class Main {
         // Validações podem ser adicionadas aqui
         Cliente novoCliente = new Cliente(nome, endereco, dataNasc);
         listaClientes.add(novoCliente);
-        System.out.println("Cliente " + novoCliente.getNomeCliente() + " (Cód: " + novoCliente.getCodCliente() + ") cadastrado com sucesso!");
+        System.out.println("Cliente " + novoCliente.getNomeCliente() + " (Cód: " + novoCliente.getCodCliente()
+                + ") cadastrado com sucesso!");
     }
 
     // função de listar todos os clientes
@@ -211,7 +213,8 @@ public class Main {
             try {
                 System.out.println("Preço do Produto: ");
                 preco = sc.nextDouble();
-                if (preco < 0) System.out.println("Preço não pode ser negativo.");
+                if (preco < 0)
+                    System.out.println("Preço não pode ser negativo.");
             } catch (InputMismatchException e) {
                 System.out.println("Entrada inválida para preço.");
                 preco = -1;
@@ -224,7 +227,8 @@ public class Main {
             try {
                 System.out.print("Quantidade em Estoque: ");
                 qtd = sc.nextInt();
-                if (qtd < 0) System.out.println("Quantidade não pode ser negativa.");
+                if (qtd < 0)
+                    System.out.println("Quantidade não pode ser negativa.");
             } catch (InputMismatchException e) {
                 System.out.println("Entrada inválida para quantidade.");
                 qtd = -1; // Reseta
@@ -237,7 +241,8 @@ public class Main {
 
         Produto novoProduto = new Produto(nome, preco, qtd, categoria);
         listaProdutos.add(novoProduto);
-        System.out.println("Produto " + novoProduto.getNomeProd() + " (Cód: " + novoProduto.getCodProd() + ") cadastrado com sucesso!");
+        System.out.println("Produto " + novoProduto.getNomeProd() + " (Cód: " + novoProduto.getCodProd()
+                + ") cadastrado com sucesso!");
     }
 
     // função de listar todos os produtos
@@ -248,7 +253,8 @@ public class Main {
             return;
         }
         for (Produto produto : listaProdutos) {
-            System.out.println(produto + " | Estoque: " + produto.getQtdProd() + " | Vendidos: " + produto.getQtdVendida() + " | Acessos: " + produto.getQtdAcessos());
+            System.out.println(produto + " | Estoque: " + produto.getQtdProd() + " | Vendidos: "
+                    + produto.getQtdVendida() + " | Acessos: " + produto.getQtdAcessos());
         }
     }
 
@@ -348,7 +354,8 @@ public class Main {
                     continue;
                 }
                 if (quantidadeDesejada > produtoParaAdicionar.getQtdProd()) {
-                    System.out.println("Quantidade em estoque insuficiente. Disponível: " + produtoParaAdicionar.getQtdProd());
+                    System.out.println(
+                            "Quantidade em estoque insuficiente. Disponível: " + produtoParaAdicionar.getQtdProd());
                     continue;
                 }
             } catch (InputMismatchException e) {
@@ -395,12 +402,44 @@ public class Main {
         historicoCompras.listarTodasAsCompras();
     }
 
-    // TODO: fazer os algoritmos de recomendação
+    // Função que realiza a recomendação de produtos
+    // com base no que o cliente já comprou
+    // e categorias dos itens que o cliente já comprou
     private static void menuRecomendacoes() {
         System.out.println("\n--- Recomendações de Produtos ---");
-        System.out.println("Funcionalidade de recomendação ainda não implementada.");
-        // Aqui entraria a lógica para chamar os algoritmos de recomendação
-        // baseados no histórico de compras, popularidade, etc.
+        System.out.print("Digite o código do cliente para recomendações: ");
+        int codigoCliente = sc.nextInt();
+        sc.nextLine();
+
+        // Verifica se o cliente existe
+        Cliente cliente = encontrarClientePorCodigo(codigoCliente);
+        if (cliente == null) {
+            System.out.println("Cliente com código " + codigoCliente + " não encontrado.");
+            return;
+        }
+
+        // Cria e popula a árvore AVL com todos os produtos disponíveis em listaProdutos
+        AVL AVL = new AVL();
+        for (Produto produto : listaProdutos) {
+            AVL.inserir(produto);
+        }
+
+        // Gera as recomendações para o cliente informado,
+        // com base em seu históricoCompleto
+        List<Produto> listaRecomendacoes = AVL.recomendarProdutos(
+                cliente, historicoCompras, 50);
+
+        // Exibe as recomendações
+        if (listaRecomendacoes.isEmpty()) {
+            System.out.println("Nenhuma recomendação disponível para este cliente.");
+        } else {
+            System.out.println("Recomendações para " + cliente.getNomeCliente() + ":");
+            for (Produto produtoRecomendado : listaRecomendacoes) {
+                System.out.println("- " + produtoRecomendado.getNomeProd()
+                        + " (Categoria: " + produtoRecomendado.getCategoriaProd()
+                        + ", Vendidos: " + produtoRecomendado.getQtdVendida() + ")");
+            }
+        }
     }
 
     // --- Métodos Auxiliares (encontrar por código) ---
@@ -427,7 +466,7 @@ public class Main {
     private static void carregarDados() {
         // Carregar Clientes
         try (FileInputStream fisClientes = new FileInputStream(ARQUIVO_CLIENTES);
-             ObjectInputStream oisClientes = new ObjectInputStream(fisClientes)) {
+                ObjectInputStream oisClientes = new ObjectInputStream(fisClientes)) {
             listaClientes = (ArrayList<Cliente>) oisClientes.readObject();
             System.out.println("Clientes carregados de " + ARQUIVO_CLIENTES + ":");
             if (listaClientes != null && !listaClientes.isEmpty()) {
@@ -444,7 +483,7 @@ public class Main {
 
         // Carregar Produtos
         try (FileInputStream fisProdutos = new FileInputStream(ARQUIVO_PRODUTOS);
-             ObjectInputStream oisProdutos = new ObjectInputStream(fisProdutos)) {
+                ObjectInputStream oisProdutos = new ObjectInputStream(fisProdutos)) {
 
             listaProdutos = (ArrayList<Produto>) oisProdutos.readObject();
             System.out.println("\nProdutos carregados de " + ARQUIVO_PRODUTOS + ":");
@@ -463,7 +502,8 @@ public class Main {
 
         try (ObjectInputStream oisHistorico = new ObjectInputStream(new FileInputStream(ARQUIVO_HISTORICO))) {
             historicoCompras = (HistoricoCompras) oisHistorico.readObject();
-            // Se HistoricoCompras gerencia um contador estático para codCompra, ajuste-o aqui.
+            // Se HistoricoCompras gerencia um contador estático para codCompra, ajuste-o
+            // aqui.
             // Carrinho.ajustarContadorAposCarregamento(historicoCompras.getListaDeCompras());
             System.out.println("Histórico de compras carregado de " + ARQUIVO_HISTORICO);
         } catch (FileNotFoundException e) {
@@ -501,4 +541,3 @@ public class Main {
         }
     }
 }
-

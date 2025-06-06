@@ -24,7 +24,7 @@ public class SerializacaoProduto {
         listaProdutos.add(new Produto("Placa de Vídeo UltraX", 4500.00, 10, "Componentes"));
         listaProdutos.add(new Produto("Impressora Multifuncional", 780.00, 18, "Periféricos"));
 
-        String nomeArquivo = "produtos.ser"; // Nome do arquivo de serialização
+        String nomeArquivo = "produtos.ser";
 
         try (FileOutputStream fos = new FileOutputStream(nomeArquivo);
              ObjectOutputStream oos = new ObjectOutputStream(fos)) {

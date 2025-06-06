@@ -63,7 +63,7 @@ public class HistoricoCompras implements Serializable {
         }
         System.out.println("\n--- Histórico Completo de Compras ---");
         for (Carrinho compra : this.compras) {
-            System.out.println(compra); // Usa o toString() do Carrinho
+            System.out.println(compra);
             System.out.println("-----------------------------------");
         }
     }

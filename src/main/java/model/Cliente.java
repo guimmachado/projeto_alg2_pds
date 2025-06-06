@@ -7,8 +7,7 @@ public class Cliente implements Serializable {
     // Atributos
     private static final long serialVersionUID = 1L;
     private int codCliente;
-    private static int contadorIdGlobal = 1; // Contador para gerar novos IDs
-    private static int contador = 1;
+    private static int contadorIdGlobal = 1;
     private String nomeCliente;
     private String enderecoCliente;
     private String dataNascimento;
@@ -93,7 +92,7 @@ public class Cliente implements Serializable {
         contadorIdGlobal = maxId + 1;
     }
 
-    // Método para obter o próximo ID a ser usado, caso necessário externamente.
+    // Método para obter o próximo ID a ser usado, caso necessário externamente
     public static int getProximoIdDisponivel() {
         return contadorIdGlobal;
     }

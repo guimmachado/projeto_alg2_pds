@@ -62,6 +62,14 @@ public class Cliente implements Serializable {
         this.dataNascimento = dataNascimento;
     }
 
+    public int getNmrPedidos() {
+        return nmrPedidos;
+    }
+
+    public void setNmrPedidos(int nmrPedidos) {
+        this.nmrPedidos = nmrPedidos;
+    }
+
     // toString()
     @Override
     public String toString() {
